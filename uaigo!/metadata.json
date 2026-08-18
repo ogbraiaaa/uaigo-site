@@ -1,0 +1,6 @@
+{
+  "name": "UaiGO! - Portfólio Desafio dos Dados Vivo",
+  "description": "Portfólio interativo de apresentação do projeto UaiGO! para o Desafio dos Dados da Vivo: O Waze Cultural para democratizar e descentralizar o acesso à cultura.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

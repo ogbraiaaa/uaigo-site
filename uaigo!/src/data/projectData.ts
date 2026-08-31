@@ -55,16 +55,17 @@ export const odsData: OdsItem[] = [
 export const defaultTeamMembers: TeamMember[] = [
   {
     id: "1",
-    name: "Prof.ª Orientadora",
-    role: "Professora Orientadora do Squad",
-    area: "Orientação Acadêmica",
-    contribution: "Orientou o squad na escolha do eixo temático, acompañhou a construção do pipeline de dados, revisou a análise de geolocalização e validou o algoritmo de recomendação de proximidade cultural.",
-    bio: "Professora dedicada com foco em ciência de dados aplicados ao impacto social. Guiou o time na conexão entre bases públicas e a lógica de recomendação do app.",
-    avatar: "https://images.unsplash.com/photo-1580489944761-15a19d654956?w=400&auto=format&fit=crop&q=80",
-    skills: ["Orientação", "Ciência de Dados", "Geolocalização", "Ensino", "Pesquisa"],
+    name: "Ana Beatriz Rocha",
+    role: "Líder de Dados & Engenharia",
+    area: "Data Science & Modelagem",
+    contribution: "Responsável pelo pipeline de coleta e estruturação de dados de equipamentos culturais públicos, análise de geolocalização e pelo algoritmo de recomendação de proximidade cultural.",
+    bio: "Entusiasta de dados com foco em inteligência territorial e impacto social. Conectou as bases públicas com a lógica de recomendação do app.",
+    avatar: "https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=400&auto=format&fit=crop&q=80",
+    skills: ["Python", "Pandas", "GeoPandas", "Algoritmos de Recomendação", "ETL"],
     socialLinks: {
       linkedin: "#",
-      email: "orientadora@uaigo.app"
+      github: "#",
+      email: "ana.dados@uaigo.app"
     }
   },
   {

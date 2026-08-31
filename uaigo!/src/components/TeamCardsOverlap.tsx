@@ -18,7 +18,7 @@ export const FIXED_TEAM_MEMBERS: TeamMember[] = [
     avatar: "https://res.cloudinary.com/f9kjnmns/image/upload/v1787267551/WhatsApp_Image_2026-08-20_at_20.11.13.jpg",
     skills: ["Metodologia de Projetos", "Mentoria Acadêmica", "Alinhamento Estratégico"],
     socialLinks: {
-      email: ""
+      email: "nayara.giovani@educacao.mg.gov.br"
     }
   },
   {
@@ -30,10 +30,7 @@ export const FIXED_TEAM_MEMBERS: TeamMember[] = [
     bio: "Desenvolvedor Full-Stack & Mobile, focado em criar soluções completas web e mobile com Flutter, Node.js, TypeScript e ecossistema Linux.",
     avatar: "https://res.cloudinary.com/f9kjnmns/image/upload/v1787266766/WhatsApp_Image_2026-08-20_at_19.20.56.jpg",
     skills: ["Python", "JavaScript/TypeScript", "Node JS", "Mapbox", "Cibersegurança", "IA"],
-    socialLinks: {
-      github: "https://github.com/ogbraiaaa",
-      email: "brayantsilva12@icloud.com"
-    }
+    socialLinks: {}
   },
   {
     id: "3",

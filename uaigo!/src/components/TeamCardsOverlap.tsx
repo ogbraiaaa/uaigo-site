@@ -17,9 +17,7 @@ export const FIXED_TEAM_MEMBERS: TeamMember[] = [
     bio: "Professora e orientadora acadêmica, responsável pela mentoria pedagógica, direcionamento metodológico e acompanhamento estratégico de projetos de tecnologia e inovação.",
     avatar: "https://res.cloudinary.com/f9kjnmns/image/upload/v1787267551/WhatsApp_Image_2026-08-20_at_20.11.13.jpg",
     skills: ["Metodologia de Projetos", "Mentoria Acadêmica", "Alinhamento Estratégico"],
-    socialLinks: {
-      email: "nayara.giovani@educacao.mg.gov.br"
-    }
+    socialLinks: {}
   },
   {
     id: "2",

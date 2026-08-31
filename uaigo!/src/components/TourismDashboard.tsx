@@ -482,7 +482,6 @@ export const TourismDashboard: React.FC = () => {
       <div className="absolute bottom-0 left-0 w-[400px] h-[400px] bg-indigo-200/30 rounded-full blur-[100px] pointer-events-none" />
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-        {/* Header */}
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -504,14 +503,12 @@ export const TourismDashboard: React.FC = () => {
           </p>
         </motion.div>
 
-        {/* KPI Cards */}
         <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-5 mb-16">
           {kpiCards.map((card, index) => (
             <KPICard key={card.id} card={card} index={index} />
           ))}
         </div>
 
-        {/* Tabs Navigation */}
         <motion.div
           initial={{ opacity: 0, y: 16 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -537,12 +534,10 @@ export const TourismDashboard: React.FC = () => {
           ))}
         </motion.div>
 
-        {/* Tab Content with AnimatePresence */}
         <AnimatePresence mode="wait">
           {renderTabContent()}
         </AnimatePresence>
 
-        {/* Bottom Summary */}
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}

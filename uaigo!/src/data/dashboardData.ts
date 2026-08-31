@@ -1,6 +1,3 @@
-// Dados da pesquisa sobre Turismo e Cultura em Antônio Carlos / Região de Barbacena
-// "Desafio dos Dados Vivo" - Purple Squad
-
 export const kpiCards = [
   {
     id: 'app-interest',

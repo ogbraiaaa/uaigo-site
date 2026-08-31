@@ -49,7 +49,6 @@ export const Navbar: React.FC = () => {
 
   return (
     <>
-      {/* Top bar - simple logo only, no navigation */}
       <header className="fixed top-0 left-0 right-0 z-50 transition-all duration-300 bg-white/60 backdrop-blur-md border-b border-purple-100/40 py-3">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex items-center justify-between">
@@ -58,8 +57,8 @@ export const Navbar: React.FC = () => {
               className="flex items-center gap-2.5 group shrink-0"
               aria-label="UaiGO! Página Inicial"
             >
-              <div className="w-9 h-9 rounded-xl bg-gradient-to-tr from-purple-700 via-purple-600 to-indigo-600 text-white flex items-center justify-center shadow-md shadow-purple-500/20 group-hover:scale-105 transition-all duration-300">
-                <MapPin className="w-4 h-4" strokeWidth={2.5} />
+              <div className="w-9 h-9 rounded-xl overflow-hidden shadow-md shadow-purple-500/20 group-hover:scale-105 transition-all duration-300">
+                <img src="https://res.cloudinary.com/f9kjnmns/image/upload/v1788191529/e6d250d8-a879-479f-b29d-bfe549409ad1-removebg-preview.png" alt="UaiGO! Logo" className="w-full h-full object-cover" />
               </div>
               <span className="text-lg font-extrabold tracking-tight text-purple-950">
                 Uai<span className="text-transparent bg-clip-text bg-gradient-to-r from-purple-600 to-indigo-600">GO!</span>
@@ -77,7 +76,6 @@ export const Navbar: React.FC = () => {
         </div>
       </header>
 
-      {/* Floating pill navbar */}
       <nav
         className={`fixed left-1/2 -translate-x-1/2 z-50 transition-all duration-500 ease-out ${
           visible
@@ -86,7 +84,6 @@ export const Navbar: React.FC = () => {
         }`}
         aria-label="Navegação Principal"
       >
-        {/* Desktop: floating pill */}
         <div className="hidden md:flex items-center gap-1 px-2 py-2 rounded-full bg-purple-950/90 backdrop-blur-xl border border-purple-700/50 shadow-[0_8px_40px_-8px_rgba(88,28,135,0.5)]">
           {navLinks.map((item) => {
             const isActive = activeSection === item.href.replace('#', '');
@@ -110,7 +107,6 @@ export const Navbar: React.FC = () => {
           })}
         </div>
 
-        {/* Mobile: floating action button */}
         <div className="md:hidden">
           <button
             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}

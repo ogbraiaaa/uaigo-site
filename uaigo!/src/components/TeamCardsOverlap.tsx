@@ -3,7 +3,6 @@ import { TeamMember } from '../types';
 import {
   Users,
   Sparkles,
-  Linkedin,
   Github,
   Mail
 } from 'lucide-react';
@@ -19,8 +18,6 @@ export const FIXED_TEAM_MEMBERS: TeamMember[] = [
     avatar: "https://res.cloudinary.com/f9kjnmns/image/upload/v1787267551/WhatsApp_Image_2026-08-20_at_20.11.13.jpg",
     skills: ["Metodologia de Projetos", "Mentoria Acadêmica", "Alinhamento Estratégico"],
     socialLinks: {
-      linkedin: "https://linkedin.com",
-      github: "https://github.com",
       email: ""
     }
   },
@@ -34,7 +31,6 @@ export const FIXED_TEAM_MEMBERS: TeamMember[] = [
     avatar: "https://res.cloudinary.com/f9kjnmns/image/upload/v1787266766/WhatsApp_Image_2026-08-20_at_19.20.56.jpg",
     skills: ["Python", "JavaScript/TypeScript", "Node JS", "Mapbox", "Cibersegurança", "IA"],
     socialLinks: {
-      linkedin: "https://linkedin.com",
       github: "https://github.com/ogbraiaaa",
       email: "brayantsilva12@icloud.com"
     }
@@ -49,8 +45,6 @@ export const FIXED_TEAM_MEMBERS: TeamMember[] = [
     avatar: "https://res.cloudinary.com/f9kjnmns/image/upload/v1787266766/WhatsApp_Image_2026-08-20_at_19.37.57.jpg",
     skills: ["Pesquisa Histórica", "Pesquisa Cultural", "Curadoria de Informações", "Análise Crítica", "Documentação"],
     socialLinks: {
-      linkedin: "https://linkedin.com",
-      github: "https://github.com",
       email: "rondineybeck84@gmail.com"
     }
   },
@@ -64,8 +58,6 @@ export const FIXED_TEAM_MEMBERS: TeamMember[] = [
     avatar: "https://res.cloudinary.com/f9kjnmns/image/upload/v1787270062/WhatsApp_Image_2026-08-20_at_20.41.08.jpg",
     skills: ["Direção Criativa", "Produção Audiovisual", "Edição de Vídeo", "Captação de Imagem e Vídeo", "Design Gráfico", "Identidade Visual", "Branding", "Storytelling", "Comunicação Visual"],
     socialLinks: {
-      linkedin: "https://linkedin.com",
-      github: "https://github.com",
       email: "carlos.negocios@uaigo.app"
     }
   }
@@ -214,20 +206,6 @@ export const TeamCardsOverlap: React.FC = () => {
                       Purple Squad • Vivo
                     </span>
                     <div className="flex items-center gap-1.5">
-                      {member.socialLinks?.linkedin && (
-                        <a
-                          href={member.socialLinks.linkedin}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          title="LinkedIn"
-                          className={`p-1.5 rounded-md transition-colors ${isHovered
-                            ? 'text-purple-200 hover:text-white hover:bg-purple-800'
-                            : 'text-purple-700 hover:text-purple-950 hover:bg-purple-100'
-                            }`}
-                        >
-                          <Linkedin className="w-3.5 h-3.5" />
-                        </a>
-                      )}
                       {member.socialLinks?.github && (
                         <a
                           href={member.socialLinks.github}

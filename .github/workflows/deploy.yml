@@ -1,0 +1,50 @@
+name: Deploy to Locaweb
+
+on:
+  push:
+    branches:
+      - main
+      - master
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+    name: Build & Deploy
+
+    steps:
+      # 1. Checkout do repositório
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      # 2. Configurar Node.js 20
+      - name: Setup Node.js 20
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: 'npm'
+          cache-dependency-path: uaigo!/package-lock.json
+
+      # 3. Instalar dependências e buildar
+      - name: Install dependencies
+        working-directory: uaigo!
+        run: npm install
+
+      - name: Build production bundle
+        working-directory: uaigo!
+        run: npm run build
+
+      # 4. Deploy via FTP para Locaweb
+      - name: Deploy to Locaweb via FTP
+        uses: SamKirkland/FTP-Deploy-Action@v4.3.5
+        with:
+          server: ${{ secrets.FTP_SERVER }}
+          username: ${{ secrets.FTP_USERNAME }}
+          password: ${{ secrets.FTP_PASSWORD }}
+          local-dir: ./uaigo!/dist/
+          server-dir: /public_html/
+          protocol: ftp
+          dry-run: false
+          exclude: |
+            .git*
+            .vscode*
+            node_modules*

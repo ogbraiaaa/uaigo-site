@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { challengeInfo, odsData } from '../data/projectData';
-import { Target, BookOpen, Users, Building2, CheckCircle2, HelpCircle, Lightbulb, Compass, Award } from 'lucide-react';
+import { Target, BookOpen, Users, Building2, CheckCircle2, ChevronRight, HelpCircle, Lightbulb, Compass, Award } from 'lucide-react';
 
 export const ChallengeSection: React.FC = () => {
   const [selectedOdsIndex, setSelectedOdsIndex] = useState(0);

@@ -4,18 +4,24 @@ import { TeamMember } from '../types';
 import {
   Users,
   Sparkles,
+  Code2,
+  Database,
+  Palette,
+  Briefcase,
   Linkedin,
   Github,
   Mail,
   Edit3,
   Plus,
   Trash2,
+  Check,
   UserCheck
 } from 'lucide-react';
 
 export const TeamCardsOverlap: React.FC = () => {
   const [members, setMembers] = useState<TeamMember[]>(defaultTeamMembers);
   const [hoveredId, setHoveredId] = useState<string | null>(null);
+  const [activeModalMember, setActiveModalMember] = useState<TeamMember | null>(null);
   const [isEditingSquad, setIsEditingSquad] = useState<boolean>(false);
 
   // New member temporary state

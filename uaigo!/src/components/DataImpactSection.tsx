@@ -1,5 +1,5 @@
 import React from 'react';
-import { BarChart3, ShieldAlert, Sparkles } from 'lucide-react';
+import { BarChart3, TrendingUp, Map, ShieldAlert, Sparkles, CheckCircle, PieChart, ArrowUpRight } from 'lucide-react';
 
 export const DataImpactSection: React.FC = () => {
   return (

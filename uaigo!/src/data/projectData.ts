@@ -1,5 +1,38 @@
 import { TeamMember, CulturalEvent, OdsItem } from '../types';
 
+export interface DiaryEntry {
+  id: string;
+  title: string;
+  content: string;
+}
+
+export const diaryEntries: DiaryEntry[] = [
+  {
+    id: 'inicio',
+    title: 'Início da Jornada',
+    content: `O grupo Purple Squad começou sua participação no campeonato sem saber muito bem como tudo funcionava. A equipe foi montada e inscrita no último momento, reunindo os integrantes com o objetivo de participar e aprender durante o campeonato.`
+  },
+  {
+    id: 'etapa1',
+    title: 'Etapa 1',
+    content: `Na primeira etapa, o grupo encarou a competição de forma descontraída, realizando as atividades enquanto conversava e se divertia. Esse período foi importante para que os integrantes se conhecessem melhor, entendessem a dinâmica do campeonato e descobrissem os pontos fortes de cada um. Conforme as fases avançavam, a vontade de vencer aumentava, e o grupo precisou aprender novos conteúdos para responder algumas questões. Enquanto alguns continuavam nas questões de múltipla escolha, outros se isolavam para estudar ou resolver os códigos.
+
+Foi uma fase cansativa, com muitas horas no laboratório, dores de cabeça e bastante desgaste, mas também de muita união e apoio. Os integrantes aprenderam a perceber quando alguém precisava de uma pausa e encontraram nas conversas aleatórias e nos momentos de descontração uma forma de aliviar a tensão. Com o tempo, passaram a se conhecer até nos mínimos detalhes, fortalecendo ainda mais o trabalho em equipe. No fim, todo esse esforço contribuiu para que o Purple Squad superasse os desafios e se classificasse para a Etapa 2.`
+  },
+  {
+    id: 'etapa2',
+    title: 'Etapa 2 - Mudança de Mentalidade',
+    content: `Ao conseguir passar para a segunda etapa, o Purple Squad percebeu que precisava mudar sua postura. O que antes era levado de forma mais descontraída passou a ser tratado com mais responsabilidade, pois o objetivo de chegar ao primeiro lugar começava a se tornar cada vez mais real. O primeiro passo foi também o mais difícil: transformar as ideias em algo concreto. Quando surgiu a ideia de criar um Waze cultural, porém, foi como se uma luz tivesse se acendido para a equipe. A partir daquele momento, o projeto começou a tomar forma e cada integrante passou a buscar uma área na qual pudesse contribuir melhor.
+
+A equipe se dividiu em diferentes especialidades para que o projeto pudesse se desenvolver, mas, mesmo trabalhando em funções distintas, todos continuaram unidos e ajudando uns aos outros. Enquanto alguns se dedicavam à programação do aplicativo, outros trabalhavam nos roteiros dos vídeos, na criação dos formulários com informações verificadas, no registro fotográfico dos pontos turísticos e na gravação de eventos. Porém, colocar tudo isso em prática trouxe dificuldades que não estavam previstas. Foi necessário realizar deslocamentos até o município vizinho para fazer entrevistas e registros visuais, lidar com um tempo cada vez mais curto e, em alguns momentos, conviver com a dúvida sobre se tudo realmente daria certo.
+
+Como se esses desafios não bastassem, a equipe sofreu um grande baque com a saída de um de seus integrantes. O Purple Squad, agora reduzido a apenas três pessoas, enfrentou um momento inicial de muita tristeza e desmotivação. Além do peso emocional, veio o impacto prático: do dia para a noite, as tarefas da pessoa que saiu precisaram ser divididas entre os que ficaram. Foi um período marcado por extrema preocupação, um salto imenso nas responsabilidades e uma corrida constante contra o tempo. Somado a esse novo cenário de sobrecarga, conciliar o desenvolvimento do projeto com a rotina escolar se tornou um desafio ainda maior. Era preciso continuar acompanhando as aulas, realizar provas, testes e participar de eventos escolares sem deixar o projeto de lado e sem permitir que os estudos fossem prejudicados.
+
+Mesmo diante dessas dificuldades, a equipe continuou avançando. Cada pesquisa realizada, foto tirada, vídeo gravado, código desenvolvido e informação conferida contribuía para transformar a ideia inicial em algo real. Houve momentos de cansaço, insegurança e pressão, mas também de aprendizado e união, principalmente quando os integrantes percebiam que precisavam uns dos outros para superar os obstáculos. Aos poucos, o Purple Squad aprendeu a administrar melhor o tempo, dividir responsabilidades e confiar no trabalho de cada integrante. O campeonato deixou de ser apenas uma competição e passou a representar um verdadeiro projeto coletivo, no qual o objetivo estava cada vez mais claro: não apenas participar, mas buscar o primeiro lugar com algo construído por todos.`
+  }
+];
+
+
 export const challengeInfo = {
   challengeTitle: "Desafio dos Dados Vivo",
   edition: "Edição Inovação & Impacto Social",
@@ -22,6 +55,19 @@ export const odsData: OdsItem[] = [
       "Mapeamento de oficinas formativas gratuitas",
       "Integração com bibliotecas e centros comunitários",
       "Incentivo à formação de novos públicos artísticos"
+    ]
+  },
+  {
+    number: 8,
+    title: "Trabalho Decente e Crescimento Econômico",
+    subtitle: "Promover o crescimento econômico sustentado, inclusivo e sustentável, emprego pleno e produtivo, e trabalho decente para todos",
+    color: "#A21942",
+    iconName: "Briefcase",
+    howWeAddress: "Ao ampliar a visibilidade de artistas independentes, feirantes e produtores culturais locais, o UaiGO! fomenta a economia criativa de pequenos produtores, gerando renda e trabalho decente em comunidades que antes não tinham acesso a canais de divulgação e mercado.",
+    indicators: [
+      "Ampliação da visibilidade de microempreendedores culturais",
+      "Fomento à economia criativa e informal organizada",
+      "Conexão direta entre produtores culturais e seus públicos"
     ]
   },
   {
@@ -131,83 +177,99 @@ export const defaultTeamMembers: TeamMember[] = [
 export const sampleEvents: CulturalEvent[] = [
   {
     id: "ev1",
-    title: "Sarau das Quebradas & Batalha de Rima",
+    title: "Sarau Poético no Coreto da Praça dos Andradas",
     category: "sarau",
-    neighborhood: "Vila Esperança",
-    city: "Zona Leste / Periferia",
+    neighborhood: "Centro (Jardim Municipal)",
+    city: "Barbacena - MG",
     date: "Hoje, 19:30",
     time: "19:30 - 22:00",
     price: "Gratuito",
     isFree: true,
-    distance: "850 m de você",
-    coordinates: { x: 28, y: 35 },
-    description: "Encontro aberto de poesia marginal, microfone livre e batalha de MCs com intervenção de grafite ao vivo na praça comunitária.",
-    attendeesCount: 78,
-    tags: ["Microfone Aberto", "Grafite", "Jovens", "Acessível"]
+    distance: "400 m de você",
+    coordinates: { x: 32, y: 38 },
+    description: "Encontro aberto de poesia e declamação no histórico coreto da Praça dos Andradas, com microfone livre para artistas locais e estudantes de Barbacena.",
+    attendeesCount: 86,
+    tags: ["Microfone Aberto", "Praça dos Andradas", "Poesia Mineira", "Livre"]
   },
   {
     id: "ev2",
-    title: "Feira de Gastronomia & Artesanato Afro-Mineiro",
+    title: "Feira das Rosas, Artesanato & Flores",
     category: "gastronomia",
-    neighborhood: "Bairro Novo Horizonte",
-    city: "Região Metropolitana",
-    date: "Sábado, 10:00",
-    time: "10:00 - 18:00",
+    neighborhood: "Parque de Exposições Senador Bias Fortes",
+    city: "Barbacena - MG",
+    date: "Sábado, 09:00",
+    time: "09:00 - 18:00",
     price: "Entrada Franca",
     isFree: true,
-    distance: "1.4 km de você",
-    coordinates: { x: 62, y: 48 },
-    description: "Culinária típica de pequenos produtores familiares, doces tradicionais, artesanato em cerâmica e roda de viola com artistas locais.",
-    attendeesCount: 142,
-    tags: ["Comida Típica", "Artesãos Locais", "Família", "Música ao Vivo"]
+    distance: "2.1 km de você",
+    coordinates: { x: 68, y: 45 },
+    description: "Celebrando a tradição da 'Cidade das Rosas', com estandes de floricultores da região, doces artesanais típicos de Minas e artesanato local.",
+    attendeesCount: 230,
+    tags: ["Festa das Rosas", "Flores", "Doces Mineiros", "Família"]
   },
   {
     id: "ev3",
-    title: "Teatro de Rua: O Circo da Memória",
+    title: "Teatro na Antiga Estação Ferroviária: Causos das Vertentes",
     category: "teatro",
-    neighborhood: "Jardim das Flores",
-    city: "Comunidade São Pedro",
-    date: "Domingo, 16:00",
-    time: "16:00 - 17:30",
-    price: "Gratuito (Passe o Chapéu)",
+    neighborhood: "Bairro São Sebastião",
+    city: "Barbacena - MG",
+    date: "Domingo, 16:30",
+    time: "16:30 - 18:00",
+    price: "Gratuito (Passagem de Chapéu)",
     isFree: true,
-    distance: "2.1 km de você",
-    coordinates: { x: 45, y: 72 },
-    description: "Espetáculo circense e teatral voltado para todas as idades, resgatando causos e histórias populares do próprio bairro.",
-    attendeesCount: 95,
-    tags: ["Circo", "Infantil e Adulto", "Rua", "Comunitário"]
+    distance: "1.2 km de você",
+    coordinates: { x: 48, y: 70 },
+    description: "Espetáculo cênico comunitário resgatando a rica memória ferroviária e causos populares do Campo das Vertentes em frente ao Centro Cultural.",
+    attendeesCount: 115,
+    tags: ["Estação Ferroviária", "Teatro Comunitário", "História Local", "Infantil"]
   },
   {
     id: "ev4",
-    title: "Oficina Aberta de Percussão & Maracatu",
+    title: "Roda de Viola & Sons do Pontilhão",
     category: "musica",
-    neighborhood: "Centro Cultural Vila Viva",
-    city: "Bairro Alto",
-    date: "Sexta, 18:00",
-    time: "18:00 - 20:00",
+    neighborhood: "Bairro Pontilhão",
+    city: "Barbacena - MG",
+    date: "Sexta, 19:00",
+    time: "19:00 - 21:30",
     price: "Gratuito",
     isFree: true,
-    distance: "3.2 km de você",
-    coordinates: { x: 78, y: 22 },
-    description: "Aprenda ritmos brasileiros do zero com instrumentos fornecidos pelo coletivo local. Não precisa de experiência prévia!",
-    attendeesCount: 54,
-    tags: ["Oficina Prática", "Música", "Sem Inscrição Prévia", "Inclusivo"]
+    distance: "1.6 km de você",
+    coordinates: { x: 76, y: 24 },
+    description: "Apresentação e roda aberta de viola caipira e MPB com músicos independentes da região do Pontilhão. Traga seu instrumento e participe!",
+    attendeesCount: 92,
+    tags: ["Moda de Viola", "Pontilhão", "Música ao Vivo", "Comunitário"]
   },
   {
     id: "ev5",
-    title: "Mostra de Cinema Independente na Parede",
+    title: "Mostra de Memória & Arte no Museu da Loucura",
     category: "arte_visual",
-    neighborhood: "Praça da Caixa d'Água",
-    city: "Vila dos Sonhos",
-    date: "Sábado, 20:00",
-    time: "20:00 - 22:30",
+    neighborhood: "Bairro Colônia / São Sebastião",
+    city: "Barbacena - MG",
+    date: "Sábado, 14:00",
+    time: "14:00 - 17:00",
     price: "Gratuito",
     isFree: true,
-    distance: "1.8 km de você",
-    coordinates: { x: 18, y: 65 },
-    description: "Projeção de curtas-metragens produzidos por cineastas periféricos diretamente no muro da praça com pipoca comunitária.",
-    attendeesCount: 110,
-    tags: ["Cineclube", "Cinema Nacional", "Pipoca Grátis", "Debate"]
+    distance: "2.8 km de você",
+    coordinates: { x: 20, y: 64 },
+    description: "Exposição artística e documental reflexiva sobre os direitos humanos, saúde mental e resgate histórico através das artes visuais em Barbacena.",
+    attendeesCount: 140,
+    tags: ["Museu da Loucura", "Artes Visuais", "História & Memória", "Acessível"]
+  },
+  {
+    id: "ev6",
+    title: "Feira de Quitandas Mineiras & Produtores no Grogotó",
+    category: "gastronomia",
+    neighborhood: "Bairro Grogotó (IF Sudeste MG)",
+    city: "Barbacena - MG",
+    date: "Domingo, 08:30",
+    time: "08:30 - 13:00",
+    price: "Entrada Franca",
+    isFree: true,
+    distance: "3.4 km de você",
+    coordinates: { x: 82, y: 78 },
+    description: "Encontro de agricultura familiar, queijos da Canastra e Vertentes, quitandas quentinhas e cafés especiais produzidos na microrregião de Barbacena.",
+    attendeesCount: 165,
+    tags: ["Grogotó", "Quitandas Mineiras", "Cafés Especiais", "Produtor Local"]
   }
 ];
 

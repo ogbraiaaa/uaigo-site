@@ -1,12 +1,13 @@
 import React, { useState } from 'react';
 import { challengeInfo, odsData } from '../data/projectData';
-import { Target, BookOpen, Users, Building2, CheckCircle2, ChevronRight, HelpCircle, Lightbulb, Compass, Award } from 'lucide-react';
+import { Target, BookOpen, Users, Building2, Briefcase, CheckCircle2, ChevronRight, HelpCircle, Lightbulb, Compass, Award } from 'lucide-react';
 
 export const ChallengeSection: React.FC = () => {
   const [selectedOdsIndex, setSelectedOdsIndex] = useState(0);
 
   const odsIcons: Record<string, React.ReactNode> = {
     GraduationCap: <BookOpen className="w-6 h-6" />,
+    Briefcase: <Briefcase className="w-6 h-6" />,
     Users: <Users className="w-6 h-6" />,
     Building2: <Building2 className="w-6 h-6" />
   };
@@ -14,8 +15,6 @@ export const ChallengeSection: React.FC = () => {
   return (
     <section id="desafio" className="py-20 relative bg-white/70 border-y border-purple-200">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        
-        {/* Section Header */}
         <div className="text-center max-w-3xl mx-auto mb-16">
           <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-purple-100 border border-purple-300 text-purple-900 text-xs font-black uppercase tracking-wider mb-4">
             <Target className="w-3.5 h-3.5 text-purple-700" />
@@ -29,7 +28,6 @@ export const ChallengeSection: React.FC = () => {
           </p>
         </div>
 
-        {/* 3 Pillars of the Vivo Challenge */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-16">
           <div className="p-7 rounded-3xl bg-white border border-purple-200 shadow-md hover:shadow-xl transition-all">
             <div className="w-12 h-12 rounded-2xl bg-purple-100 border border-purple-200 flex items-center justify-center text-purple-700 mb-4">
@@ -62,7 +60,6 @@ export const ChallengeSection: React.FC = () => {
           </div>
         </div>
 
-        {/* Questão Norteadora Box */}
         <div id="questao-ods" className="relative p-8 sm:p-12 rounded-3xl bg-gradient-to-br from-purple-950 via-purple-900 to-indigo-950 text-white border-2 border-purple-700 shadow-2xl shadow-purple-900/30 mb-16 overflow-hidden">
           <div className="absolute -top-12 -right-12 w-64 h-64 bg-purple-600/30 rounded-full blur-3xl pointer-events-none" />
           <div className="absolute -bottom-12 -left-12 w-64 h-64 bg-amber-500/20 rounded-full blur-3xl pointer-events-none" />
@@ -73,7 +70,7 @@ export const ChallengeSection: React.FC = () => {
                 Desafio Escolhido • Eixo {challengeInfo.trackCode}
               </span>
               <span className="text-xs text-purple-200 font-bold">
-                Desafio dos Dados Vivo | Squad UaiGO!
+                Desafio dos Dados Vivo | Purple Squad
               </span>
             </div>
 
@@ -81,7 +78,6 @@ export const ChallengeSection: React.FC = () => {
               {challengeInfo.trackCode} {challengeInfo.trackTitle}
             </h3>
 
-            {/* The Question in quote format */}
             <div className="p-6 sm:p-8 rounded-2xl bg-purple-950/80 border border-purple-500/40 mb-6 shadow-inner">
               <div className="flex items-start gap-4">
                 <HelpCircle className="w-7 h-7 text-amber-400 shrink-0 mt-0.5" />
@@ -96,7 +92,6 @@ export const ChallengeSection: React.FC = () => {
               </div>
             </div>
 
-            {/* Official Description */}
             <div className="space-y-4 text-purple-100 text-sm sm:text-base leading-relaxed">
               <p>
                 <strong className="text-white font-black">Diagnóstico do Problema:</strong> {challengeInfo.description}
@@ -108,7 +103,6 @@ export const ChallengeSection: React.FC = () => {
           </div>
         </div>
 
-        {/* ODS Section */}
         <div>
           <div className="flex items-center justify-between mb-8">
             <div>
@@ -122,10 +116,7 @@ export const ChallengeSection: React.FC = () => {
             <p className="hidden sm:block text-xs font-bold text-purple-800 max-w-xs text-right">
               Clique nos cards de ODS abaixo para ver detalhadamente a contribuição do UaiGO!
             </p>
-          </div>
-
-          {/* ODS Selector Tabs */}
-          <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 mb-6">
+          </div>              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 mb-6">
             {odsData.map((item, index) => {
               const isSelected = selectedOdsIndex === index;
               return (
@@ -162,7 +153,6 @@ export const ChallengeSection: React.FC = () => {
             })}
           </div>
 
-          {/* ODS Active Detail Panel */}
           {odsData[selectedOdsIndex] && (
             <div className="p-6 sm:p-8 rounded-3xl bg-white border border-purple-200 shadow-xl">
               <div className="flex flex-col lg:flex-row gap-6 items-start justify-between">
@@ -191,7 +181,6 @@ export const ChallengeSection: React.FC = () => {
                   </div>
                 </div>
 
-                {/* Indicators / Impact bullets */}
                 <div className="w-full lg:w-80 bg-purple-50 p-5 rounded-2xl border border-purple-200">
                   <h5 className="text-xs font-black text-purple-900 uppercase tracking-wider mb-3">
                     Ações & Indicadores do Projeto

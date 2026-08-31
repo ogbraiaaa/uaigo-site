@@ -4,7 +4,6 @@ html {
   scroll-behavior: smooth;
 }
 
-/* Custom subtle scrollbar */
 ::-webkit-scrollbar {
   width: 8px;
   height: 8px;

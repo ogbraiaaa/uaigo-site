@@ -25,7 +25,7 @@ export interface CulturalEvent {
   price: string;
   isFree: boolean;
   distance: string;
-  coordinates: { x: number; y: number }; // Percentage for interactive map
+  coordinates: { x: number; y: number };
   description: string;
   attendeesCount: number;
   tags: string[];

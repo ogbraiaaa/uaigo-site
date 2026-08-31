@@ -14,29 +14,24 @@ export const ProjectUaiGo: React.FC = () => {
 
   return (
     <section id="sobre-uaigo" className="py-20 relative overflow-hidden bg-purple-50/50">
-      {/* Background ambient lighting */}
       <div className="absolute top-1/2 left-0 w-96 h-96 bg-purple-200/40 rounded-full blur-3xl pointer-events-none" />
       <div className="absolute bottom-10 right-0 w-96 h-96 bg-purple-300/30 rounded-full blur-3xl pointer-events-none" />
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-        
-        {/* Top Header */}
         <div className="text-center max-w-3xl mx-auto mb-16">
           <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-purple-100 border border-purple-300 text-purple-900 text-xs font-black uppercase tracking-wider mb-4">
             <Navigation className="w-3.5 h-3.5 text-purple-700" />
             Nossa Solução Tecnológica
           </div>
           <h2 className="text-3xl sm:text-5xl font-black text-purple-950 tracking-tight">
-            O que é o <span className="text-purple-700 underline decoration-purple-300 decoration-wavy">UaiGO!</span>?
+            O que é o <span className="text-purple-700">UaiGO!</span>?
           </h2>
           <p className="mt-4 text-purple-900/85 text-base sm:text-lg leading-relaxed font-medium">
             Uma plataforma colaborativa e orientada a dados que funciona como um <strong className="text-purple-950 font-bold bg-purple-200/60 px-1.5 py-0.5 rounded">"Waze Cultural"</strong>. Conectamos cidadãos a eventos de bairro, tradições populares e artistas independentes em tempo real.
           </p>
         </div>
 
-        {/* Narrative / Concept Breakdown */}
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center mb-16">
-          
           <div className="lg:col-span-7 space-y-6">
             <div className="p-7 rounded-3xl bg-white border border-purple-200 shadow-md space-y-3">
               <div className="flex items-center gap-3">
@@ -75,7 +70,6 @@ export const ProjectUaiGo: React.FC = () => {
             </div>
           </div>
 
-          {/* Feature interactive graphic / Architecture summary */}
           <div className="lg:col-span-5">
             <div className="p-7 rounded-3xl bg-gradient-to-br from-purple-950 via-purple-900 to-indigo-950 border-2 border-purple-700 text-white shadow-2xl relative">
               <div className="flex items-center justify-between border-b border-purple-500/30 pb-4 mb-6">
@@ -139,10 +133,8 @@ export const ProjectUaiGo: React.FC = () => {
               </div>
             </div>
           </div>
-
         </div>
 
-        {/* 6 Feature Pillars Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           {projectHighlights.map((feat, idx) => (
             <div
@@ -161,7 +153,6 @@ export const ProjectUaiGo: React.FC = () => {
             </div>
           ))}
         </div>
-
       </div>
     </section>
   );

@@ -1,0 +1,12 @@
+{
+  "name": "uaigo-root",
+  "scripts": {
+    "dev": "npm --prefix uaigo! run dev",
+    "build": "npm --prefix uaigo! run build",
+    "preview": "npm --prefix uaigo! run preview",
+    "deploy": "npm --prefix uaigo! run deploy"
+  },
+  "devDependencies": {
+    "gh-pages": "^6.3.0"
+  }
+}

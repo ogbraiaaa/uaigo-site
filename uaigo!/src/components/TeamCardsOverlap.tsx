@@ -1,213 +1,101 @@
 import React, { useState } from 'react';
-import { defaultTeamMembers } from '../data/projectData';
 import { TeamMember } from '../types';
 import {
   Users,
   Sparkles,
-  Code2,
-  Database,
-  Palette,
-  Briefcase,
   Linkedin,
   Github,
-  Mail,
-  Edit3,
-  Plus,
-  Trash2,
-  Check,
-  UserCheck
+  Mail
 } from 'lucide-react';
 
+export const FIXED_TEAM_MEMBERS: TeamMember[] = [
+  {
+    id: "1",
+    name: "Nayara Giovani",
+    role: "Professora e Orientadora",
+    area: "Ciência de Dados e Pesquisa Aplicada",
+    contribution: "Responsável pelo direcionamento metodológico, mentoria pedagógica e validação das etapas do projeto, garantindo o alinhamento estratégico da solução com os objetivos do desafio.",
+    bio: "Professora e orientadora acadêmica, responsável pela mentoria pedagógica, direcionamento metodológico e acompanhamento estratégico de projetos de tecnologia e inovação.",
+    avatar: "https://res.cloudinary.com/f9kjnmns/image/upload/v1787267551/WhatsApp_Image_2026-08-20_at_20.11.13.jpg",
+    skills: ["Linda", "Incrivel", "Paraninfa", "Muié do vitor"],
+    socialLinks: {
+      linkedin: "https://linkedin.com",
+      github: "https://github.com",
+      email: ""
+    }
+  },
+  {
+    id: "2",
+    name: "Brayan Silva",
+    role: "Desenvolvedor Full Stack & Mobile",
+    area: "Desenvolvimento & Arquitetura",
+    contribution: "Desenvolvi a solução completa do Desafio dos Dados — criando a aplicação mobile e a plataforma web do zero com Flutter e Node.js/TypeScript, além de integrar recursos de IA e geolocalização com Mapbox.",
+    bio: "Desenvolvedor Full-Stack & Mobile, focado em criar soluções completas web e mobile com Flutter, Node.js, TypeScript e ecossistema Linux.",
+    avatar: "https://res.cloudinary.com/f9kjnmns/image/upload/v1787266766/WhatsApp_Image_2026-08-20_at_19.20.56.jpg",
+    skills: ["Python", "JavaScript/TypeScript", "Node JS", "Mapbox", "Cibersegurança", "IA"],
+    socialLinks: {
+      linkedin: "https://linkedin.com",
+      github: "https://github.com/ogbraiaaa",
+      email: "brayantsilva12@icloud.com"
+    }
+  },
+  {
+    id: "3",
+    name: "Rondiney Beck",
+    role: "Pesquisa Histórica, Conhecimento Cultural e Análise Estratégica",
+    area: "Design de Produto & Pesquisa",
+    contribution: "Contribuiu diretamente para o aprofundamento histórico e cultural do projeto, pesquisando a origem e o contexto de eventos, manifestações culturais, movimentos e pontos turísticos, garantindo mais autenticidade e valorização da cultura local. Também acompanhou a trajetória da equipe, registrou detalhes importantes e realizou uma análise crítica da solução, contribuindo para seu aprimoramento.",
+    bio: "Designer centrado no usuário com foco em acessibilidade e democratização digital.",
+    avatar: "https://res.cloudinary.com/f9kjnmns/image/upload/v1787266766/WhatsApp_Image_2026-08-20_at_19.37.57.jpg",
+    skills: ["Pesquisa Histórica", "Pesquisa Cultural", "Curadoria de Informações", "Análise Crítica", "Documentação"],
+    socialLinks: {
+      linkedin: "https://linkedin.com",
+      github: "https://github.com",
+      email: "rondineybeck84@gmail.com"
+    }
+  },
+  {
+    id: "4",
+    name: "Maria Leticia Borges",
+    role: "Direção Criativa, Audiovisual e Identidade Visual",
+    area: "Estratégia & Articulação Local",
+    contribution: "Atuou na construção da identidade e da comunicação visual do projeto, conectando estratégia, criatividade e narrativa para transformar a proposta da equipe em uma experiência visual. Foi responsável pela edição do vídeo de transmídia, captação e registro audiovisual de eventos e pontos turísticos, documentação dos momentos da equipe e desenvolvimento da identidade visual, incluindo a criação da logo do aplicativo e do símbolo do Squad.",
+    bio: "Estrategista de inovação social focado em impacto comunitário e parcerias público-privadas.",
+    avatar: "https://res.cloudinary.com/f9kjnmns/image/upload/v1787270062/WhatsApp_Image_2026-08-20_at_20.41.08.jpg",
+    skills: ["Direção Criativa", "Produção Audiovisual", "Edição de Vídeo", "Captação de Imagem e Vídeo", "Design Gráfico", "Identidade Visual", "Branding", "Storytelling", "Comunicação Visual"],
+    socialLinks: {
+      linkedin: "https://linkedin.com",
+      github: "https://github.com",
+      email: "carlos.negocios@uaigo.app"
+    }
+  }
+];
+
 export const TeamCardsOverlap: React.FC = () => {
-  const [members, setMembers] = useState<TeamMember[]>(defaultTeamMembers);
   const [hoveredId, setHoveredId] = useState<string | null>(null);
-  const [activeModalMember, setActiveModalMember] = useState<TeamMember | null>(null);
-  const [isEditingSquad, setIsEditingSquad] = useState<boolean>(false);
 
-  // New member temporary state
-  const [newMemberName, setNewMemberName] = useState('');
-  const [newMemberRole, setNewMemberRole] = useState('');
-  const [newMemberArea, setNewMemberArea] = useState('');
-  const [newMemberContribution, setNewMemberContribution] = useState('');
-  const [newMemberBio, setNewMemberBio] = useState('');
-  const [newMemberSkills, setNewMemberSkills] = useState('');
-  const [newMemberAvatar, setNewMemberAvatar] = useState('');
-
-  const handleAddNewMember = (e: React.FormEvent) => {
-    e.preventDefault();
-    if (!newMemberName || !newMemberRole) return;
-
-    const newM: TeamMember = {
-      id: Date.now().toString(),
-      name: newMemberName,
-      role: newMemberRole,
-      area: newMemberArea || 'Squad Member',
-      contribution: newMemberContribution || 'Contribuiu com desenvolvimento e pesquisa no projeto UaiGO!.',
-      bio: newMemberBio || 'Integrante dedicado do Squad no Desafio dos Dados Vivo.',
-      avatar: newMemberAvatar || `https://images.unsplash.com/photo-${1500000000000 + Math.floor(Math.random() * 100000)}?w=400&auto=format&fit=crop&q=80`,
-      skills: newMemberSkills ? newMemberSkills.split(',').map(s => s.trim()) : ['Inovação', 'Trabalho em Equipe'],
-      socialLinks: {
-        linkedin: '#',
-        email: 'contato@uaigo.app'
-      }
-    };
-
-    setMembers([...members, newM]);
-    setNewMemberName('');
-    setNewMemberRole('');
-    setNewMemberArea('');
-    setNewMemberContribution('');
-    setNewMemberBio('');
-    setNewMemberSkills('');
-    setNewMemberAvatar('');
-    setIsEditingSquad(false);
-  };
-
-  const handleDeleteMember = (id: string) => {
-    setMembers(members.filter(m => m.id !== id));
-  };
+  const members = FIXED_TEAM_MEMBERS;
 
   return (
     <section id="equipe" className="py-24 relative overflow-hidden bg-purple-50/70 border-t border-purple-200">
-      {/* Background glow ambiance */}
       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[500px] bg-purple-200/40 rounded-full blur-[140px] pointer-events-none" />
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-        
-        {/* Section Header */}
-        <div className="text-center max-w-3xl mx-auto mb-16">
-          <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-purple-100 border border-purple-300 text-purple-950 text-xs font-black uppercase tracking-wider mb-3">
+        <div className="text-center max-w-3xl mx-auto mb-14">
+          <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-purple-100 border border-purple-300 text-purple-950 text-xs font-black uppercase tracking-wider mb-3 shadow-sm">
             <Users className="w-3.5 h-3.5 text-purple-700" />
             Quem Faz Acontecer
           </div>
           <h2 className="text-3xl sm:text-5xl font-black text-purple-950 tracking-tight">
-            Integrantes do <span className="text-purple-700 underline decoration-purple-300">Squad UaiGO!</span>
+            Integrantes do <span className="text-purple-700">Purple Squad</span>
           </h2>
           <p className="mt-3 text-purple-900/80 text-sm sm:text-base leading-relaxed font-medium">
-            Conheça as pessoas por trás do projeto no Desafio dos Dados Vivo. Passe o mouse sobre os cards sobrepostos para focar e ver as contribuições de cada integrante.
+            Conheça as pessoas por trás do projeto no Desafio dos Dados Vivo. Passe o cursor sobre os cards sobrepostos para expandir e ver a atuação de cada integrante.
           </p>
-
-          <div className="mt-5 flex items-center justify-center gap-3">
-            <button
-              onClick={() => setIsEditingSquad(!isEditingSquad)}
-              className="px-5 py-2 rounded-full bg-white border-2 border-purple-300 hover:border-purple-600 text-xs font-black text-purple-900 hover:text-purple-950 flex items-center gap-1.5 transition-all shadow-md"
-            >
-              <Edit3 className="w-3.5 h-3.5 text-purple-700" />
-              {isEditingSquad ? 'Fechar Edição' : 'Personalizar Integrantes do Grupo'}
-            </button>
-          </div>
         </div>
 
-        {/* Modal / Inline form to add or edit squad members */}
-        {isEditingSquad && (
-          <div className="mb-14 p-6 sm:p-8 rounded-3xl bg-white border-2 border-purple-400 shadow-2xl backdrop-blur-xl max-w-3xl mx-auto animate-fadeIn">
-            <div className="flex items-center justify-between border-b border-purple-200 pb-3 mb-5">
-              <h3 className="text-base font-black text-purple-950 flex items-center gap-2">
-                <UserCheck className="w-5 h-5 text-purple-700" />
-                Adicionar Integrante ao Squad
-              </h3>
-              <span className="text-xs text-purple-700 font-bold">
-                Total atual: {members.length} integrantes
-              </span>
-            </div>
-
-            <form onSubmit={handleAddNewMember} className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-              <div className="space-y-1">
-                <label className="text-xs font-black text-purple-950">Nome Completo</label>
-                <input
-                  type="text"
-                  placeholder="Ex: João da Silva"
-                  value={newMemberName}
-                  onChange={(e) => setNewMemberName(e.target.value)}
-                  required
-                  className="w-full px-3 py-2 bg-purple-50 border border-purple-300 rounded-xl text-xs text-purple-950 font-medium focus:outline-none focus:border-purple-700"
-                />
-              </div>
-
-              <div className="space-y-1">
-                <label className="text-xs font-black text-purple-950">Função / Cargo no Projeto</label>
-                <input
-                  type="text"
-                  placeholder="Ex: Desenvolvedor Front-end & Dados"
-                  value={newMemberRole}
-                  onChange={(e) => setNewMemberRole(e.target.value)}
-                  required
-                  className="w-full px-3 py-2 bg-purple-50 border border-purple-300 rounded-xl text-xs text-purple-950 font-medium focus:outline-none focus:border-purple-700"
-                />
-              </div>
-
-              <div className="space-y-1">
-                <label className="text-xs font-black text-purple-950">Área de Atuação</label>
-                <input
-                  type="text"
-                  placeholder="Ex: Ciência de Dados / UX"
-                  value={newMemberArea}
-                  onChange={(e) => setNewMemberArea(e.target.value)}
-                  className="w-full px-3 py-2 bg-purple-50 border border-purple-300 rounded-xl text-xs text-purple-950 font-medium focus:outline-none focus:border-purple-700"
-                />
-              </div>
-
-              <div className="space-y-1">
-                <label className="text-xs font-black text-purple-950">Link da Foto (Avatar)</label>
-                <input
-                  type="url"
-                  placeholder="URL da foto (opcional)"
-                  value={newMemberAvatar}
-                  onChange={(e) => setNewMemberAvatar(e.target.value)}
-                  className="w-full px-3 py-2 bg-purple-50 border border-purple-300 rounded-xl text-xs text-purple-950 font-medium focus:outline-none focus:border-purple-700"
-                />
-              </div>
-
-              <div className="sm:col-span-2 space-y-1">
-                <label className="text-xs font-black text-purple-950">O que fez no projeto (Contribuição principal)</label>
-                <textarea
-                  rows={2}
-                  placeholder="Descreva as tarefas, análises e entregas que esta pessoa realizou no projeto UaiGO!..."
-                  value={newMemberContribution}
-                  onChange={(e) => setNewMemberContribution(e.target.value)}
-                  className="w-full px-3 py-2 bg-purple-50 border border-purple-300 rounded-xl text-xs text-purple-950 font-medium focus:outline-none focus:border-purple-700"
-                />
-              </div>
-
-              <div className="sm:col-span-2 space-y-1">
-                <label className="text-xs font-black text-purple-950">Habilidades / Tecnologias (separadas por vírgula)</label>
-                <input
-                  type="text"
-                  placeholder="Ex: Python, Figma, React, Geoprocessamento"
-                  value={newMemberSkills}
-                  onChange={(e) => setNewMemberSkills(e.target.value)}
-                  className="w-full px-3 py-2 bg-purple-50 border border-purple-300 rounded-xl text-xs text-purple-950 font-medium focus:outline-none focus:border-purple-700"
-                />
-              </div>
-
-              <div className="sm:col-span-2 flex items-center justify-end gap-3 pt-2">
-                <button
-                  type="button"
-                  onClick={() => setIsEditingSquad(false)}
-                  className="px-4 py-2 rounded-xl text-xs text-purple-700 font-bold hover:text-purple-950"
-                >
-                  Cancelar
-                </button>
-                <button
-                  type="submit"
-                  className="px-5 py-2.5 rounded-xl bg-purple-700 hover:bg-purple-800 text-white font-black text-xs uppercase tracking-wider shadow-lg flex items-center gap-1.5"
-                >
-                  <Plus className="w-4 h-4" />
-                  Salvar Novo Integrante
-                </button>
-              </div>
-            </form>
-          </div>
-        )}
-
-        {/* ========================================================================= */}
-        {/* OVERLAPPING VERTICAL CARDS CONTAINER                                     */}
-        {/* "card deve ser na vertical e ficar um sobrepondo metade do outro e quando */}
-        {/* colocar o mouse ele focar naquele sabe"                                   */}
-        {/* ========================================================================= */}
-        <div className="relative py-12 px-2 overflow-x-auto lg:overflow-visible pb-16">
-          <div className="flex items-center justify-start lg:justify-center min-w-max lg:min-w-0 pt-8 pb-12">
-            
+        <div className="relative py-8 px-2 overflow-x-auto lg:overflow-visible pb-16 scrollbar-none">
+          <div className="flex items-center justify-start lg:justify-center min-w-max lg:min-w-0 pt-6 pb-10">
             {members.map((member, index) => {
               const isHovered = hoveredId === member.id;
               const hasHoveredOther = hoveredId !== null && !isHovered;
@@ -220,56 +108,43 @@ export const TeamCardsOverlap: React.FC = () => {
                   onMouseLeave={() => setHoveredId(null)}
                   className={`
                     relative transition-all duration-500 ease-out cursor-pointer
-                    /* Vertical Card Dimensions */
-                    w-[290px] sm:w-[320px] min-h-[460px] flex flex-col justify-between
-                    rounded-3xl p-6 select-none
-                    /* Overlapping Margin logic: first card 0 margin, subsequent overlap half */
-                    ${index > 0 ? '-ml-28 sm:-ml-36 lg:-ml-36' : 'ml-0'}
-                    /* Z-Index & Elevation logic */
-                    ${
-                      isHovered
-                        ? 'z-40 -translate-y-8 scale-110 bg-purple-900 text-white border-2 border-amber-400 shadow-[0_25px_60px_-15px_rgba(147,51,234,0.5)] ring-4 ring-purple-400'
-                        : hasHoveredOther
-                        ? 'z-10 opacity-70 scale-95 blur-[0.4px] bg-white border border-purple-200 shadow-md text-purple-950'
+                    w-[270px] sm:w-[295px] h-[480px] flex flex-col
+                    rounded-3xl p-5 sm:p-6 select-none overflow-hidden
+                    ${index > 0 ? '-ml-20 sm:-ml-28 md:-ml-32 lg:-ml-24 xl:-ml-20' : 'ml-0'}
+                    ${isHovered
+                      ? 'z-50 -translate-y-8 scale-105 sm:scale-110 bg-purple-900 text-white border-2 border-amber-400 shadow-[0_25px_60px_-15px_rgba(147,51,234,0.5)] ring-4 ring-purple-400'
+                      : hasHoveredOther
+                        ? 'z-10 opacity-75 scale-95 blur-[0.3px] bg-white border border-purple-200 shadow-md text-purple-950'
                         : 'z-20 bg-white border-2 border-purple-200 hover:border-purple-400 shadow-xl text-purple-950'
                     }
                   `}
                   style={{
-                    zIndex: isHovered ? 50 : 20 - index,
+                    zIndex: isHovered ? 50 : 25 - index,
                   }}
                 >
-                  {/* Subtle top indicator badge */}
                   <div className="flex items-center justify-between gap-2 mb-3">
-                    <span className={`text-[10px] font-black uppercase px-2.5 py-1 rounded-full ${
-                      isHovered
+                    <span
+                      className={`text-[10px] font-black uppercase px-2.5 py-1 rounded-full truncate max-w-[190px] ${isHovered
                         ? 'bg-purple-950 text-purple-200 border border-purple-600'
                         : 'bg-purple-100 text-purple-900 border border-purple-200'
-                    }`}>
+                        }`}
+                    >
                       {member.area}
                     </span>
-                    
-                    {isEditingSquad && (
-                      <button
-                        onClick={(e) => {
-                          e.stopPropagation();
-                          handleDeleteMember(member.id);
-                        }}
-                        className="p-1 rounded-lg bg-rose-100 text-rose-800 hover:bg-rose-200"
-                        title="Remover integrante"
-                      >
-                        <Trash2 className="w-3.5 h-3.5" />
-                      </button>
-                    )}
+                    <span
+                      className={`text-[10px] font-black px-2 py-0.5 rounded-full ${isHovered ? 'bg-amber-400 text-purple-950' : 'bg-purple-200 text-purple-900'
+                        }`}
+                    >
+                      #{index + 1}
+                    </span>
                   </div>
 
-                  {/* Member Photo & Glow */}
                   <div className="relative mx-auto my-2 text-center group">
                     <div
-                      className={`relative w-24 h-24 sm:w-28 sm:h-28 mx-auto rounded-2xl overflow-hidden border-2 transition-all duration-300 ${
-                        isHovered
-                          ? 'border-amber-400 ring-4 ring-purple-400 shadow-lg'
-                          : 'border-purple-300 shadow'
-                      }`}
+                      className={`relative w-24 h-24 sm:w-28 sm:h-28 mx-auto rounded-2xl overflow-hidden border-2 transition-all duration-300 ${isHovered
+                        ? 'border-amber-400 ring-4 ring-purple-400 shadow-lg'
+                        : 'border-purple-300 shadow'
+                        }`}
                     >
                       <img
                         src={member.avatar}
@@ -277,74 +152,78 @@ export const TeamCardsOverlap: React.FC = () => {
                         className="w-full h-full object-cover"
                         referrerPolicy="no-referrer"
                         onError={(e) => {
-                          // Fallback avatar if unsplash fails
-                          (e.currentTarget as HTMLImageElement).src = `https://ui-avatars.com/api/?name=${encodeURIComponent(member.name)}&background=7c3aed&color=fff`;
+                          (e.currentTarget as HTMLImageElement).src = `https://ui-avatars.com/api/?name=${encodeURIComponent(
+                            member.name
+                          )}&background=7c3aed&color=fff`;
                         }}
                       />
                     </div>
                   </div>
 
-                  {/* Name and Role */}
                   <div className="text-center my-2">
-                    <h4 className={`text-xl font-black leading-tight ${isHovered ? 'text-white' : 'text-purple-950'}`}>
+                    <h4 className={`text-lg sm:text-xl font-black leading-tight ${isHovered ? 'text-white' : 'text-purple-950'}`}>
                       {member.name}
                     </h4>
-                    <p className={`text-xs font-black mt-1 ${isHovered ? 'text-amber-300' : 'text-purple-700'}`}>
+                    <p className={`text-xs font-bold mt-1 ${isHovered ? 'text-amber-300' : 'text-purple-700'}`}>
                       {member.role}
                     </p>
                   </div>
 
-                  {/* "O que fez no projeto" highlight card inside */}
                   <div
-                    className={`my-3 p-3.5 rounded-2xl border transition-all ${
-                      isHovered
-                        ? 'bg-purple-950/90 border-purple-500/60 shadow-inner'
-                        : 'bg-purple-50 border-purple-200'
-                    }`}
+                    className={`my-2.5 p-3 rounded-2xl border transition-all duration-300 ${isHovered
+                      ? 'bg-purple-950/95 border-purple-500/60 shadow-inner'
+                      : 'bg-purple-50 border-purple-200'
+                      }`}
                   >
-                    <div className={`flex items-center gap-1.5 text-[10px] font-black uppercase tracking-wider mb-1 ${
-                      isHovered ? 'text-amber-300' : 'text-purple-700'
-                    }`}>
-                      <Sparkles className="w-3 h-3" />
-                      O que fez no projeto:
+                    <div
+                      className={`flex items-center gap-1.5 text-[10px] font-black uppercase tracking-wider mb-1.5 ${isHovered ? 'text-amber-300' : 'text-purple-700'
+                        }`}
+                    >
+                      <Sparkles className="w-3 h-3 shrink-0" />
+                      <span>Contribuição no Projeto:</span>
                     </div>
-                    <p className={`text-xs leading-relaxed font-medium ${
-                      isHovered ? 'text-purple-100' : 'text-purple-900/90'
-                    }`}>
+                    <p
+                      className={`text-[11px] leading-relaxed font-medium transition-all duration-300 ${isHovered
+                        ? 'text-purple-100 line-clamp-4 max-h-[72px] overflow-y-auto pr-1'
+                        : 'text-purple-900/90 line-clamp-4'
+                        }`}
+                    >
                       {member.contribution}
                     </p>
                   </div>
 
-                  {/* Skills tags */}
                   <div className="flex flex-wrap gap-1 justify-center my-2">
                     {member.skills.slice(0, 3).map((skill, sIdx) => (
                       <span
                         key={sIdx}
-                        className={`text-[9px] font-black px-2 py-0.5 rounded-md border ${
-                          isHovered
-                            ? 'bg-purple-950 text-purple-200 border-purple-600'
-                            : 'bg-purple-100 text-purple-900 border-purple-200'
-                        }`}
+                        className={`text-[9px] font-black px-2 py-0.5 rounded-md border ${isHovered
+                          ? 'bg-purple-950 text-purple-200 border-purple-600'
+                          : 'bg-purple-100 text-purple-900 border-purple-200'
+                          }`}
                       >
                         {skill}
                       </span>
                     ))}
                   </div>
 
-                  {/* Social and bio drawer on hover focus */}
-                  <div className={`pt-3 border-t flex items-center justify-between text-xs ${
-                    isHovered ? 'border-purple-700 text-purple-200' : 'border-purple-200 text-purple-700'
-                  }`}>
+                  <div
+                    className={`pt-3 border-t flex items-center justify-between text-xs ${isHovered ? 'border-purple-700 text-purple-200' : 'border-purple-200 text-purple-700'
+                      }`}
+                  >
                     <span className="text-[10px] font-black">
-                      Squad UaiGO! Vivo
+                      Purple Squad • Vivo
                     </span>
-                    <div className="flex items-center gap-2">
+                    <div className="flex items-center gap-1.5">
                       {member.socialLinks?.linkedin && (
                         <a
                           href={member.socialLinks.linkedin}
-                          className={`p-1 rounded-md ${
-                            isHovered ? 'text-purple-200 hover:text-white hover:bg-purple-800' : 'text-purple-700 hover:text-purple-950 hover:bg-purple-100'
-                          }`}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          title="LinkedIn"
+                          className={`p-1.5 rounded-md transition-colors ${isHovered
+                            ? 'text-purple-200 hover:text-white hover:bg-purple-800'
+                            : 'text-purple-700 hover:text-purple-950 hover:bg-purple-100'
+                            }`}
                         >
                           <Linkedin className="w-3.5 h-3.5" />
                         </a>
@@ -352,9 +231,13 @@ export const TeamCardsOverlap: React.FC = () => {
                       {member.socialLinks?.github && (
                         <a
                           href={member.socialLinks.github}
-                          className={`p-1 rounded-md ${
-                            isHovered ? 'text-purple-200 hover:text-white hover:bg-purple-800' : 'text-purple-700 hover:text-purple-950 hover:bg-purple-100'
-                          }`}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          title="GitHub"
+                          className={`p-1.5 rounded-md transition-colors ${isHovered
+                            ? 'text-purple-200 hover:text-white hover:bg-purple-800'
+                            : 'text-purple-700 hover:text-purple-950 hover:bg-purple-100'
+                            }`}
                         >
                           <Github className="w-3.5 h-3.5" />
                         </a>
@@ -362,29 +245,27 @@ export const TeamCardsOverlap: React.FC = () => {
                       {member.socialLinks?.email && (
                         <a
                           href={`mailto:${member.socialLinks.email}`}
-                          className={`p-1 rounded-md ${
-                            isHovered ? 'text-purple-200 hover:text-white hover:bg-purple-800' : 'text-purple-700 hover:text-purple-950 hover:bg-purple-100'
-                          }`}
+                          title="E-mail"
+                          className={`p-1.5 rounded-md transition-colors ${isHovered
+                            ? 'text-purple-200 hover:text-white hover:bg-purple-800'
+                            : 'text-purple-700 hover:text-purple-950 hover:bg-purple-100'
+                            }`}
                         >
                           <Mail className="w-3.5 h-3.5" />
                         </a>
                       )}
                     </div>
                   </div>
-
                 </div>
               );
             })}
-
           </div>
         </div>
 
-        {/* Helpful user tip */}
         <div className="text-center text-xs text-purple-700 font-bold flex items-center justify-center gap-2">
           <Sparkles className="w-3.5 h-3.5 text-purple-600" />
-          <span>Dica: passe o cursor por cada integrante para ver o foco de atuação e tarefas desenvolvidas.</span>
+          <span>Passe o mouse sobre cada integrante para ver o foco de atuação e contribuições desenvolvidas.</span>
         </div>
-
       </div>
     </section>
   );

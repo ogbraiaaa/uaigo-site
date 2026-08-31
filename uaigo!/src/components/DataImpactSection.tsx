@@ -5,25 +5,20 @@ export const DataImpactSection: React.FC = () => {
   return (
     <section id="impacto" className="py-20 relative overflow-hidden bg-purple-50">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-        
-        {/* Section Header */}
         <div className="text-center max-w-3xl mx-auto mb-16">
           <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-purple-100 border border-purple-300 text-purple-950 text-xs font-black uppercase tracking-wider mb-4">
             <BarChart3 className="w-3.5 h-3.5 text-purple-700" />
             Inteligência Territorial & Dados
           </div>
           <h2 className="text-3xl sm:text-5xl font-black text-purple-950 tracking-tight">
-            O Poder dos Dados na <span className="text-purple-700 underline decoration-purple-300">Descentralização Cultural</span>
+            O Poder dos Dados na <span className="text-purple-700">Descentralização Cultural</span>
           </h2>
           <p className="mt-3 text-purple-900/80 text-sm sm:text-base font-medium">
             Como transformamos dados abertos, georreferenciamento e crowdsourcing em ferramentas de equidade territorial no Desafio dos Dados Vivo.
           </p>
         </div>
 
-        {/* Comparative Cards: O Cenário Tradicional vs O Modelo UaiGO! */}
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-16">
-          
-          {/* Cenário Centralizado Tradicional */}
           <div className="p-7 sm:p-8 rounded-3xl bg-white border-2 border-rose-200 shadow-xl space-y-4">
             <div className="flex items-center justify-between">
               <span className="text-xs font-black uppercase tracking-wider px-3 py-1 rounded-full bg-rose-100 text-rose-900 border border-rose-300 flex items-center gap-1.5">
@@ -64,7 +59,6 @@ export const DataImpactSection: React.FC = () => {
             </div>
           </div>
 
-          {/* Impacto com UaiGO! */}
           <div className="p-7 sm:p-8 rounded-3xl bg-gradient-to-br from-purple-950 via-purple-900 to-indigo-950 border-2 border-purple-700 shadow-2xl text-white space-y-4">
             <div className="flex items-center justify-between">
               <span className="text-xs font-black uppercase tracking-wider px-3 py-1 rounded-full bg-emerald-900/80 text-emerald-200 border border-emerald-500 flex items-center gap-1.5">
@@ -104,42 +98,39 @@ export const DataImpactSection: React.FC = () => {
               </div>
             </div>
           </div>
-
         </div>
 
-        {/* Big Numbers Row */}
-        <div className="p-8 rounded-3xl bg-white border-2 border-purple-200 shadow-xl">
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-6 text-center divide-y md:divide-y-0 md:divide-x divide-purple-200">
-            <div className="pt-4 md:pt-0">
-              <div className="text-3xl sm:text-4xl font-black text-purple-700">
-                ODS 4, 10, 11
+        <div className="p-6 sm:p-8 rounded-3xl bg-white border-2 border-purple-200 shadow-xl">
+          <div className="grid grid-cols-2 gap-4 sm:gap-6 text-center divide-y sm:divide-y-0 sm:divide-x divide-purple-200">
+            <div className="pt-4 sm:pt-0">
+              <div className="text-xl sm:text-3xl lg:text-4xl font-black text-purple-700 leading-tight">
+                ODS 4, 8, 10, 11
               </div>
-              <p className="text-xs font-black text-purple-950 mt-1">Metas Globais Integradas</p>
+              <p className="text-[10px] sm:text-xs font-black text-purple-950 mt-1">Metas Globais Integradas</p>
             </div>
 
-            <div className="pt-4 md:pt-0">
-              <div className="text-3xl sm:text-4xl font-black text-purple-950">
+            <div className="pt-4 sm:pt-0">
+              <div className="text-xl sm:text-3xl lg:text-4xl font-black text-purple-950 leading-tight">
                 Zero Custo
               </div>
-              <p className="text-xs font-black text-purple-950 mt-1">Foco em Atividades Gratuitas</p>
+              <p className="text-[10px] sm:text-xs font-black text-purple-950 mt-1">Foco em Atividades Gratuitas</p>
             </div>
 
-            <div className="pt-4 md:pt-0">
-              <div className="text-3xl sm:text-4xl font-black text-amber-600">
+            <div className="pt-4 sm:pt-0">
+              <div className="text-xl sm:text-3xl lg:text-4xl font-black text-amber-600 leading-tight">
                 Tempo Real
               </div>
-              <p className="text-xs font-black text-purple-950 mt-1">Alertas e Validações Comunitárias</p>
+              <p className="text-[10px] sm:text-xs font-black text-purple-950 mt-1">Alertas Comunitários</p>
             </div>
 
-            <div className="pt-4 md:pt-0">
-              <div className="text-3xl sm:text-4xl font-black text-emerald-700">
+            <div className="pt-4 sm:pt-0">
+              <div className="text-xl sm:text-3xl lg:text-4xl font-black text-emerald-700 leading-tight">
                 Descentralizado
               </div>
-              <p className="text-xs font-black text-purple-950 mt-1">Fortalecimento das Periferias</p>
+              <p className="text-[10px] sm:text-xs font-black text-purple-950 mt-1">Fortalecimento das Periferias</p>
             </div>
           </div>
         </div>
-
       </div>
     </section>
   );

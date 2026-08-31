@@ -75,8 +75,10 @@ const VideoPlayer: React.FC = () => {
   const videoRef = React.useRef<HTMLVideoElement>(null);
   const [isPlaying, setIsPlaying] = useState(false);
   const [isMuted, setIsMuted] = useState(true);
+  const [volume, setVolume] = useState(0.75);
   const [progress, setProgress] = useState(0);
   const [showControls, setShowControls] = useState(true);
+  const [showVolume, setShowVolume] = useState(false);
 
   const togglePlay = () => {
     if (videoRef.current) {
@@ -95,8 +97,28 @@ const VideoPlayer: React.FC = () => {
 
   const toggleMute = () => {
     if (videoRef.current) {
-      videoRef.current.muted = !isMuted;
-      setIsMuted(!isMuted);
+      const newMuted = !isMuted;
+      videoRef.current.muted = newMuted;
+      setIsMuted(newMuted);
+      if (!newMuted && volume === 0) {
+        setVolume(0.75);
+        videoRef.current.volume = 0.75;
+      }
+    }
+  };
+
+  const handleVolumeChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    if (videoRef.current) {
+      const newVol = parseFloat(e.target.value);
+      setVolume(newVol);
+      videoRef.current.volume = newVol;
+      if (newVol === 0) {
+        videoRef.current.muted = true;
+        setIsMuted(true);
+      } else if (isMuted) {
+        videoRef.current.muted = false;
+        setIsMuted(false);
+      }
     }
   };
 
@@ -184,14 +206,34 @@ const VideoPlayer: React.FC = () => {
                   />
                 </div>
 
-                <motion.button
-                  whileHover={{ scale: 1.1 }}
-                  whileTap={{ scale: 0.9 }}
-                  onClick={toggleMute}
-                  className="w-10 h-10 rounded-full bg-white/10 backdrop-blur-md flex items-center justify-center text-white hover:bg-white/20 transition-colors"
+                <div
+                  className="relative flex items-center gap-1.5"
+                  onMouseEnter={() => setShowVolume(true)}
+                  onMouseLeave={() => setShowVolume(false)}
                 >
-                  {isMuted ? <VolumeX className="w-4 h-4" /> : <Volume2 className="w-4 h-4" />}
-                </motion.button>
+                  <motion.button
+                    whileHover={{ scale: 1.1 }}
+                    whileTap={{ scale: 0.9 }}
+                    onClick={toggleMute}
+                    className="w-10 h-10 rounded-full bg-white/10 backdrop-blur-md flex items-center justify-center text-white hover:bg-white/20 transition-colors shrink-0"
+                  >
+                    {isMuted || volume === 0 ? <VolumeX className="w-4 h-4" /> : <Volume2 className="w-4 h-4" />}
+                  </motion.button>
+
+                  <div
+                    className={`overflow-hidden transition-all duration-200 ease-out ${showVolume ? 'w-24 opacity-100' : 'w-0 opacity-0'}`}
+                  >
+                    <input
+                      type="range"
+                      min="0"
+                      max="1"
+                      step="0.01"
+                      value={isMuted ? 0 : volume}
+                      onChange={handleVolumeChange}
+                      className="w-full h-1 appearance-none bg-white/30 rounded-full cursor-pointer accent-amber-400 [&::-webkit-slider-thumb]:appearance-none [&::-webkit-slider-thumb]:w-3 [&::-webkit-slider-thumb]:h-3 [&::-webkit-slider-thumb]:rounded-full [&::-webkit-slider-thumb]:bg-amber-400 [&::-webkit-slider-thumb]:shadow-md [&::-webkit-slider-thumb]:cursor-pointer [&::-moz-range-thumb]:w-3 [&::-moz-range-thumb]:h-3 [&::-moz-range-thumb]:rounded-full [&::-moz-range-thumb]:bg-amber-400 [&::-moz-range-thumb]:border-none [&::-moz-range-thumb]:cursor-pointer"
+                    />
+                  </div>
+                </div>
 
                 <motion.button
                   whileHover={{ scale: 1.1 }}

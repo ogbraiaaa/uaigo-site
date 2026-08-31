@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { Link } from 'react-router-dom';
 import { Sparkles, MapPin, Users, Target, Smartphone, BarChart2, Menu, X, Compass, ArrowRight, Camera } from 'lucide-react';
 
 export const Navbar: React.FC = () => {
@@ -41,7 +42,7 @@ export const Navbar: React.FC = () => {
     { label: 'ODS', href: '#questao-ods', icon: Sparkles },
     { label: 'Projeto', href: '#sobre-uaigo', icon: Compass },
     { label: 'App', href: '#simulador', icon: Smartphone },
-    { label: 'Pesquisa', href: '#dashboard', icon: BarChart2 },
+    { label: 'Pesquisa', href: '/dashboard', icon: BarChart2, isRoute: true },
     { label: 'Dados', href: '#impacto', icon: BarChart2 },
     { label: 'Mídias', href: '#midia-diario', icon: Camera },
     { label: 'Equipe', href: '#equipe', icon: Users },
@@ -86,7 +87,27 @@ export const Navbar: React.FC = () => {
       >
         <div className="hidden md:flex items-center gap-1 px-2 py-2 rounded-full bg-purple-950/90 backdrop-blur-xl border border-purple-700/50 shadow-[0_8px_40px_-8px_rgba(88,28,135,0.5)]">
           {navLinks.map((item) => {
-            const isActive = activeSection === item.href.replace('#', '');
+            const isActive = item.isRoute ? false : activeSection === item.href.replace('#', '');
+            const linkContent = (
+              <>
+                <item.icon className={`w-3.5 h-3.5 transition-colors ${isActive ? 'text-amber-300' : 'text-purple-400 group-hover:text-amber-300'}`} strokeWidth={2} />
+                <span>{item.label}</span>
+                {isActive && (
+                  <span className="absolute bottom-0.5 left-1/2 -translate-x-1/2 w-4 h-0.5 rounded-full bg-amber-300" />
+                )}
+              </>
+            );
+            if (item.isRoute) {
+              return (
+                <Link
+                  key={item.label}
+                  to={item.href}
+                  className="group flex items-center gap-1.5 px-3.5 py-2 text-[12px] font-semibold rounded-full transition-all duration-200 active:scale-95 whitespace-nowrap relative text-purple-200 hover:text-white hover:bg-white/10"
+                >
+                  {linkContent}
+                </Link>
+              );
+            }
             return (
               <a
                 key={item.label}
@@ -97,11 +118,7 @@ export const Navbar: React.FC = () => {
                     : 'text-purple-200 hover:text-white hover:bg-white/10'
                 }`}
               >
-                <item.icon className={`w-3.5 h-3.5 transition-colors ${isActive ? 'text-amber-300' : 'text-purple-400 group-hover:text-amber-300'}`} strokeWidth={2} />
-                <span>{item.label}</span>
-                {isActive && (
-                  <span className="absolute bottom-0.5 left-1/2 -translate-x-1/2 w-4 h-0.5 rounded-full bg-amber-300" />
-                )}
+                {linkContent}
               </a>
             );
           })}
@@ -119,7 +136,25 @@ export const Navbar: React.FC = () => {
           {mobileMenuOpen && (
             <div className="absolute bottom-full mb-3 left-1/2 -translate-x-1/2 w-64 bg-purple-950/95 backdrop-blur-xl rounded-2xl border border-purple-700/50 shadow-2xl p-2 space-y-1 animate-in fade-in slide-in-from-bottom-2 duration-200">
               {navLinks.map((item) => {
-                const isActive = activeSection === item.href.replace('#', '');
+                const isActive = item.isRoute ? false : activeSection === item.href.replace('#', '');
+                const mobileLinkContent = (
+                  <>
+                    <item.icon className={`w-4 h-4 ${isActive ? 'text-amber-300' : 'text-purple-400'}`} strokeWidth={1.8} />
+                    <span>{item.label}</span>
+                  </>
+                );
+                if (item.isRoute) {
+                  return (
+                    <Link
+                      key={item.label}
+                      to={item.href}
+                      onClick={() => setMobileMenuOpen(false)}
+                      className="px-4 py-2.5 text-sm font-semibold rounded-xl flex items-center gap-3 transition-colors text-purple-200 hover:text-white hover:bg-white/10"
+                    >
+                      {mobileLinkContent}
+                    </Link>
+                  );
+                }
                 return (
                   <a
                     key={item.label}
@@ -131,8 +166,7 @@ export const Navbar: React.FC = () => {
                         : 'text-purple-200 hover:text-white hover:bg-white/10'
                     }`}
                   >
-                    <item.icon className={`w-4 h-4 ${isActive ? 'text-amber-300' : 'text-purple-400'}`} strokeWidth={1.8} />
-                    <span>{item.label}</span>
+                    {mobileLinkContent}
                   </a>
                 );
               })}

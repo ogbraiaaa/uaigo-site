@@ -82,10 +82,14 @@ const VideoPlayer: React.FC = () => {
     if (videoRef.current) {
       if (isPlaying) {
         videoRef.current.pause();
+        setIsPlaying(false);
       } else {
-        videoRef.current.play();
+        videoRef.current.play().then(() => {
+          setIsPlaying(true);
+        }).catch(() => {
+          setIsPlaying(false);
+        });
       }
-      setIsPlaying(!isPlaying);
     }
   };
 
@@ -108,7 +112,9 @@ const VideoPlayer: React.FC = () => {
     if (videoRef.current) {
       const current = videoRef.current.currentTime;
       const duration = videoRef.current.duration;
-      setProgress((current / duration) * 100);
+      if (duration && isFinite(duration)) {
+        setProgress((current / duration) * 100);
+      }
     }
   };
 
@@ -116,8 +122,11 @@ const VideoPlayer: React.FC = () => {
     if (videoRef.current) {
       const rect = e.currentTarget.getBoundingClientRect();
       const x = e.clientX - rect.left;
-      const percentage = x / rect.width;
-      videoRef.current.currentTime = percentage * videoRef.current.duration;
+      const percentage = Math.max(0, Math.min(1, x / rect.width));
+      const duration = videoRef.current.duration;
+      if (duration && isFinite(duration)) {
+        videoRef.current.currentTime = percentage * duration;
+      }
     }
   };
 
